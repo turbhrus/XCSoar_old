@@ -666,6 +666,7 @@ XCSOAR_SOURCES := \
 	$(SRC)/ApplyExternalSettings.cpp \
 	$(SRC)/ApplyVegaSwitches.cpp \
 	$(SRC)/MainWindow.cpp \
+	$(SRC)/MAVLink.cpp \
 	$(SRC)/Startup.cpp \
 	$(SRC)/Components.cpp \
 	$(SRC)/DataGlobals.cpp \

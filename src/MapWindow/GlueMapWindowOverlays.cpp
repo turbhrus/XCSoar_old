@@ -38,6 +38,7 @@ Copyright_License {
 #include "Terrain/RasterTerrain.hpp"
 #include "Util/Macros.hpp"
 #include "Util/Clamp.hpp"
+#include "Util/ConvertString.hpp"
 #include "Util/StringAPI.hxx"
 #include "Look/GestureLook.hpp"
 #include "Input/InputEvents.hpp"
@@ -174,6 +175,22 @@ GlueMapWindow::DrawGPSStatus(Canvas &canvas, const PixelRect &rc,
   const Font &font = *look.overlay.overlay_font;
   canvas.Select(font);
   TextInBox(canvas, txt, p.x, p.y, mode, rc, nullptr);
+}
+
+void
+GlueMapWindow::DrawDebugMsg(Canvas &canvas, const PixelRect &rc) const
+{
+  if( !( Basic().debug_msg_available.IsValid() )){
+    return;
+  } else{
+    PixelPoint p(rc.left + Layout::FastScale(2),
+                 rc.bottom + Layout::FastScale(35));
+    TextInBoxMode mode;
+    mode.shape = LabelShape::OUTLINED;
+    const Font &font = *look.overlay.overlay_font;
+    canvas.Select(font);
+    TextInBox(canvas, Basic().debug_msg_buffer, p.x, p.y, mode, rc, NULL);
+  }
 }
 
 void
